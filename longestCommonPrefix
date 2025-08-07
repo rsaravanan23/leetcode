@@ -1,0 +1,38 @@
+//Name: Rishi Saravanan
+//Date: 8/6/2025
+//Program Name: longestCommonPrefix
+//Program Goal: Write a function to find the longest common prefix string amongst an array of strings.
+
+
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        int minLength = 1000000;
+        //finds shortest word in array 
+        for(int i = 0; i < strs.length; i++) { 
+            if(strs[i].length() < minLength) { 
+                minLength = strs[i].length();
+            }
+        }
+        boolean check = true; 
+        String totalString = "";
+        int currentCount;
+        for(int j = 0; j < minLength; j++) { 
+            currentCount = 0;
+            for(int k = 0; k < strs.length-1; k++) { 
+                //checks if the characters in each word match
+                if(strs[k].charAt(j) == strs[k+1].charAt(j)) { 
+                    currentCount++; 
+                } else { 
+                    check = false; 
+                }
+            }
+            if(currentCount == strs.length - 1 && check) { 
+                totalString += strs[0].charAt(j);
+            } else { 
+                break;
+            }
+            currentCount = 0;
+        }
+        return totalString; 
+    }
+}
